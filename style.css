@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #2b2b49;
+  color: #fff;
+}
+
+/* Tag elements */
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
+
+/* Class elements */
+
+.main-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.input-div {
+  background-color: #454573;
+  margin: 2rem;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.input-div input {
+  background-color: #454573;
+  border: none;
+  border-bottom: 1px solid #fff;
+}
+
+.results-div {
+  background-color: #454573;
+  margin: 2rem;
+  padding: 1rem;
+  border-radius: 1rem;
+}

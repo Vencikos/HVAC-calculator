@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>HVAC calculator</title>
+    <title>HVAC Air Vent</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="style.css" />
@@ -21,12 +21,50 @@
     <![endif]-->
     <div class="main-row">
       <div class="input-div">
-        <img src="" alt="" />
-        <input type="text" />
+        <form action="">
+          <!-- Type  -->
+
+          <label for="sizeA">Select air outlet type</label>
+          <select name="" id="">
+            <option value="" disabled selected></option>
+            <option value="Ceiling">Ceiling</option>
+            <option value="Wall">Wall</option>
+          </select>
+
+          <!-- Size A input -->
+
+          <label for="sizeA">Size A (mm)</label>
+          <input type="number" class="input-sizeA" name="sizeA" />
+
+          <!-- Size B input -->
+
+          <label for="sizeB">Size B (mm)</label>
+          <input type="number" class="input-sizeB" />
+
+          <!-- Volume input -->
+
+          <label for="sizeB">Air volume (m3/h)</label>
+          <input type="number" class="input-sizeB" />
+
+          <!-- Speed input -->
+
+          <label for="sizeB">Air speed (m/s)</label>
+          <input type="number" class="input-sizeB" />
+        </form>
       </div>
       <div class="results-div">
-        <h3>Area</h3>
-        <p>Placeholder</p>
+        <div class="results-speed">
+          <h4>Speed</h4>
+          <h3>5.5m/s</h3>
+        </div>
+        <div class="results-maxspeed">
+          <h4>Maximum speed</h4>
+          <h3>5.5m/s</h3>
+        </div>
+        <div class="results-speed2">
+          <h4>Speed</h4>
+          <h3>5.5m/s</h3>
+        </div>
       </div>
     </div>
 

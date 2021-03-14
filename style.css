@@ -1,77 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #151f2d;
-  color: #fff;
 }
 
 /* Tag elements */
-h3,
-h4 {
-  padding: 0.5rem;
-  background-color: #27354b;
+html {
+  background-color: #bbe5ed;
+  color: #fff;
+  font-family: "Inconsolata", monospace;
 }
 
-textarea:focus,
-input:focus {
-  outline: none;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  background-color: #27354b;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* Class elements */
-
-.main-row {
+ul {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  background-color: #353535;
+  list-style-type: none;
 }
 
-.input-div {
-  display: flex;
-  flex-direction: column;
-  background-color: #27354b;
-  margin: 2rem;
+li {
+  background-color: #353535;
+  color: #fff;
+  margin: 0 2rem;
+}
+
+li:hover {
+  color: #000;
+  cursor: pointer;
+}
+
+a {
+  display: block;
+  position: relative;
+  height: 100%;
   padding: 1rem;
-  border-radius: 1rem;
+  text-decoration: none;
+  color: #fff;
 }
 
-.input-div label {
-  background-color: #27354b;
-  margin: 0 1rem;
-  border: none;
-}
-
-.input-div input,
-.input-div select {
-  background-color: #151f2d;
-  font-size: 1rem;
-  margin: 0.5rem 1rem 1rem 1rem;
-  padding: 0.5rem;
-  border-radius: 0.7rem;
-  border: none;
-}
-
-.results-div {
-  width: 200px;
-  margin: 2rem;
-}
-
-.results-speed,
-.results-maxspeed {
-  margin-bottom: 1rem;
-  border-radius: 1rem;
-}
-.results-speed2 {
-  border-radius: 1rem;
+a:hover::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #bbe5ed;
 }

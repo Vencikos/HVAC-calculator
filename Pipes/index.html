@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>HVAC Air Vent</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/1e9889ec18.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <header>
+    <nav>
+      <ul>
+        <li>
+          <a href="">Ducts</a>
+        </li>
+        <li>
+          <a href="/Air vents/index.html">Air vents</a>
+        </li>
+        <li>
+          <a href="">Pipes</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="#">upgrade your browser</a> to improve your experience.
+      </p>
+    <![endif]-->
+    <div class="main-row">
+      <!-- Input fields -->
+
+      <div class="input-div">
+        <form onsubmit="event.preventDefault();">
+          <!-- Type  -->
+
+          <label for="sizeA">Select air outlet type</label>
+          <select name="" id="outlet-type">
+            <option value="" disabled selected></option>
+            <option value="Ceiling">Ceiling</option>
+            <option value="Wall">Wall</option>
+          </select>
+
+          <!-- Size A input -->
+
+          <label for="sizeA">Size A (mm)</label>
+          <input type="number" class="input-sizeA" onchange="calcSpeed()" />
+
+          <!-- Size B input -->
+
+          <label for="sizeB">Size B (mm)</label>
+          <input type="number" class="input-sizeB" onchange="calcSpeed()" />
+
+          <!-- Volume input -->
+
+          <label for="sizeB">Air volume (m3/h)</label>
+          <input
+            type="number"
+            class="air-volume-input"
+            onchange="calcSpeed()"
+          />
+
+          <!-- Speed input -->
+
+          <label for="sizeB">Air speed (m/s)</label>
+          <input type="number" class="air-speed-input" onchange="calcSpeed()" />
+
+          <!-- Calculate button -->
+
+          <button class="btn btn-calc">Calculate</button>
+          <button class="btn btn-add">Add to table</button>
+          <button class="btn btn-reset">Reset</button>
+          <button class="btn btn-print">Print table</button>
+        </form>
+      </div>
+
+      <!-- Result fields -->
+
+      <div class="results-div">
+        <div class="results-speed">
+          <h4>Speed</h4>
+          <h3 class="result-speed-text">0.00 m/s</h3>
+        </div>
+
+        <div class="results-max-volume">
+          <h4>Max volume</h4>
+          <h3 class="result-max-volume-text">0.00 m3/h</h3>
+        </div>
+
+        <div class="results-second-size">
+          <h4>Min second side</h4>
+          <h3 class="result-second-size-text">0.00 mm</h3>
+        </div>
+      </div>
+
+      <div class="results-elements">
+        <table border="2" cellpadding="3" id="tab">
+          <tr class="table">
+            <th scope="col">Description</th>
+            <th scope="col">Size A</th>
+            <th scope="col">Size B</th>
+            <th scope="col">Air volume</th>
+            <th scope="col">Air speed</th>
+            <th scope="col">Max volume</th>
+            <th scope="col">Min second side</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <script src="app.js" async defer></script>
+  </body>
+</html>

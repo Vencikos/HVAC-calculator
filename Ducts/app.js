@@ -2,7 +2,7 @@
 ////////////// Input fields ///////////////
 ///////////////////////////////////////////
 
-const outletTypeInput = document.querySelector("#outlet-type");
+const ductTypeInput = document.querySelector("#duct-type");
 const sizeAInput = document.querySelector(".input-sizeA");
 const sizeBInput = document.querySelector(".input-sizeB");
 const airVolumeInput = document.querySelector(".air-volume-input");
@@ -53,16 +53,21 @@ const resetResults = () => {
 ///////////////////////////////////////////
 
 const calcSpeed = () => {
-  let typeInput = 0.5;
-  if (outletTypeInput.value === "Wall") typeInput = 0.7;
-
-  const calc =
+  const calcRectangle =
     +airVolumeInput.value /
     3600 /
     (+sizeAInput.value / 1000) /
-    (+sizeBInput.value / 1000) /
-    typeInput;
-  return calc.toFixed(2);
+    (+sizeBInput.value / 1000);
+
+  const calcCircle =
+    +airVolumeInput.value /
+    3600 /
+    (+sizeAInput.value / 1000) /
+    (+sizeBInput.value / 1000);
+
+  return ductTypeInput === "Rectangle"
+    ? calcRectangle.toFixed(2)
+    : calcCircle.toFixed(2);
 };
 
 ///////////////////////////////////////////////
@@ -87,15 +92,11 @@ const calcMaxVolume = () => {
 ///////////////////////////////////////////////
 
 const calcMinVertical = () => {
-  let typeInput = 0.5;
-  if (outletTypeInput.value === "Wall") typeInput = 0.7;
-
   const calc =
     +airVolumeInput.value /
     3600 /
     (+sizeAInput.value / 1000) /
-    +airSpeedInput.value /
-    typeInput;
+    +airSpeedInput.value;
   return (calc * 1000).toFixed(2);
 };
 
@@ -108,14 +109,13 @@ const table = document.querySelector(".table");
 const addResultsToTable = () => {
   const html = `
     <tr>
-      <th scope="row">Air vent (${outletTypeInput.value} mounted)</th>
+      <th scope="row">Duct (${ductTypeInput.value})</th>
       <td>${sizeAInput.value}</td>
       <td>${sizeBInput.value}</td>
       <td>${airVolumeInput.value}</td>
       <td>${calcSpeed()}</td>
-      <td>${calcMinVertical()}</td>
       <td>${calcMaxVolume()}</td>
-      <td>${airSpeedInput.value}</td>
+      <td>${calcMinVertical()}</td>
       <td><button class='btn-close' onclick="deleteRow(this)"><i class="far fa-minus-square fa-lg"></i></button></td>
     </tr>`;
 
@@ -134,6 +134,9 @@ function deleteRow(r) {
 ///////////////////////////////////////////////
 ////////////// EVENT LISTENERS ////////////////
 ///////////////////////////////////////////////
+
+if (ductTypeInput.value === "Round") sizeBInput.classList.toggle("hidden");
+if (ductTypeInput.value === "Rectangle") sizeBInput.classList.toggle("hidden");
 
 calcBtn.addEventListener("click", function () {
   resultSpeed.textContent = `${calcSpeed()} m/s`;

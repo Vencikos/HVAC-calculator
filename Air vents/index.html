@@ -20,13 +20,16 @@
     <nav>
       <ul>
         <li>
-          <a href="">Ducts</a>
+          <a href="/index.html">Home</a>
+        </li>
+        <li>
+          <a href="/Ducts/index.html">Ducts</a>
         </li>
         <li>
           <a href="/Air vents/index.html">Air vents</a>
         </li>
         <li>
-          <a href="">Pipes</a>
+          <a href="/Pipes/index.html">Pipes</a>
         </li>
       </ul>
     </nav>
@@ -64,7 +67,7 @@
 
           <!-- Volume input -->
 
-          <label for="sizeB">Air volume (m3/h)</label>
+          <label for="air-volume">Air volume (m3/h)</label>
           <input
             type="number"
             class="air-volume-input"
@@ -73,7 +76,7 @@
 
           <!-- Speed input -->
 
-          <label for="sizeB">Air speed (m/s)</label>
+          <label for="air-speed">Air speed (m/s)</label>
           <input type="number" class="air-speed-input" onchange="calcSpeed()" />
 
           <!-- Calculate button -->
@@ -106,15 +109,27 @@
 
       <div class="results-elements">
         <table border="2" cellpadding="3" id="tab">
-          <tr class="table">
+          <tr>
             <th scope="col">Description</th>
             <th scope="col">Size A</th>
             <th scope="col">Size B</th>
             <th scope="col">Air volume</th>
             <th scope="col">Air speed</th>
-            <th scope="col">Max volume</th>
             <th scope="col">Min second side</th>
+            <th scope="col">Max volume</th>
+            <th scope="col">Speed input</th>
             <th scope="col">Delete</th>
+          </tr>
+          <tr class="table">
+            <th scope="col"></th>
+            <th scope="col">mm</th>
+            <th scope="col">mm</th>
+            <th scope="col">m3/h</th>
+            <th scope="col">m/s</th>
+            <th scope="col">mm</th>
+            <th scope="col">m3/h</th>
+            <th scope="col">m/s</th>
+            <th scope="col"></th>
           </tr>
         </table>
       </div>

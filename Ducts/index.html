@@ -48,21 +48,17 @@
         <form onsubmit="event.preventDefault();">
           <!-- Type  -->
 
-          <label for="sizeA">Select air outlet type</label>
-          <select name="" id="outlet-type">
+          <label for="sizeA">Select duct type</label>
+          <select name="" id="duct-type">
             <option value="" disabled selected></option>
-            <option value="Ceiling">Ceiling</option>
-            <option value="Wall">Wall</option>
+            <option value="Ceiling">Rectangle</option>
+            <option value="Wall">Round</option>
           </select>
 
           <!-- Total consumption -->
 
-          <label for="sizeA">Total consumption (kW)</label>
-          <input
-            type="number"
-            class="input-consumption"
-            onchange="calcSpeed()"
-          />
+          <label for="sizeA">Size A (mm)</label>
+          <input type="number" class="input-sizeA" onchange="calcSpeed()" />
 
           <!-- Size B input -->
 
@@ -113,15 +109,27 @@
 
       <div class="results-elements">
         <table border="2" cellpadding="3" id="tab">
-          <tr class="table">
+          <tr>
             <th scope="col">Description</th>
             <th scope="col">Size A</th>
             <th scope="col">Size B</th>
             <th scope="col">Air volume</th>
             <th scope="col">Air speed</th>
-            <th scope="col">Max volume</th>
             <th scope="col">Min second side</th>
+            <th scope="col">Max volume</th>
+            <th scope="col">Speed input</th>
             <th scope="col">Delete</th>
+          </tr>
+          <tr class="table">
+            <th scope="col"></th>
+            <th scope="col">mm</th>
+            <th scope="col">mm</th>
+            <th scope="col">m3/h</th>
+            <th scope="col">m/s</th>
+            <th scope="col">mm</th>
+            <th scope="col">m3/h</th>
+            <th scope="col">m/s</th>
+            <th scope="col"></th>
           </tr>
         </table>
       </div>

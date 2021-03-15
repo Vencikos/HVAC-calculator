@@ -44,7 +44,6 @@ const resetInput = () => {
 
 const resetResults = () => {
   resultSpeed.textContent = `0.00 m/s`;
-  resultMaxSpeed.textContent = `0.00 m/s`;
   resultMaxVolume.textContent = `0.00 m3/h`;
   resultSecondSize.textContent = `0.00 mm`;
 };

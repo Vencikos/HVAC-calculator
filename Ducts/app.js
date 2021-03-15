@@ -7,6 +7,7 @@ const sizeAInput = document.querySelector(".input-sizeA");
 const sizeBInput = document.querySelector(".input-sizeB");
 const airVolumeInput = document.querySelector(".air-volume-input");
 const airSpeedInput = document.querySelector(".air-speed-input");
+const labelSizeBInput = document.querySelector(".label-sizeB");
 
 ///////////////////////////////////////////
 ////////////// Result fields //////////////
@@ -35,7 +36,7 @@ const btnPrint = document.querySelector(".btn-print");
 ///////////////////////////////////////////
 
 const resetInput = () => {
-  outletTypeInput.value = "";
+  ductTypeInput.value = "";
   sizeAInput.value = "";
   sizeBInput.value = "";
   airVolumeInput.value = "";
@@ -44,7 +45,6 @@ const resetInput = () => {
 
 const resetResults = () => {
   resultSpeed.textContent = `0.00 m/s`;
-  resultMaxSpeed.textContent = `0.00 m/s`;
   resultMaxVolume.textContent = `0.00 m3/h`;
   resultSecondSize.textContent = `0.00 mm`;
 };
@@ -62,10 +62,9 @@ const calcSpeed = () => {
   const calcCircle =
     +airVolumeInput.value /
     3600 /
-    (+sizeAInput.value / 1000) /
-    (+sizeBInput.value / 1000);
+    ((3.14 * (+sizeAInput.value / 1000) ** 2) / 4);
 
-  return ductTypeInput === "Rectangle"
+  return ductTypeInput.value === "Rectangle"
     ? calcRectangle.toFixed(2)
     : calcCircle.toFixed(2);
 };
@@ -75,16 +74,20 @@ const calcSpeed = () => {
 ///////////////////////////////////////////////
 
 const calcMaxVolume = () => {
-  let typeInput = 0.5;
-  if (outletTypeInput.value === "Wall") typeInput = 0.7;
-
-  const calc =
+  const calcRectangle =
     +airSpeedInput.value *
     3600 *
     (+sizeAInput.value / 1000) *
-    (+sizeBInput.value / 1000) *
-    typeInput;
-  return calc.toFixed(2);
+    (+sizeBInput.value / 1000);
+
+  const calcCircle =
+    +airSpeedInput.value *
+    3600 *
+    ((3.14 * (+sizeAInput.value / 1000) ** 2) / 4);
+
+  return ductTypeInput.value === "Rectangle"
+    ? calcRectangle.toFixed(2)
+    : calcCircle.toFixed(2);
 };
 
 ///////////////////////////////////////////////
@@ -97,7 +100,7 @@ const calcMinVertical = () => {
     3600 /
     (+sizeAInput.value / 1000) /
     +airSpeedInput.value;
-  return (calc * 1000).toFixed(2);
+  return ductTypeInput.value === "Round" ? "0.00" : (calc * 1000).toFixed(2);
 };
 
 ///////////////////////////////////////////////
@@ -114,8 +117,9 @@ const addResultsToTable = () => {
       <td>${sizeBInput.value}</td>
       <td>${airVolumeInput.value}</td>
       <td>${calcSpeed()}</td>
-      <td>${calcMaxVolume()}</td>
       <td>${calcMinVertical()}</td>
+      <td>${calcMaxVolume()}</td>
+      <td>${airSpeedInput.value}</td>
       <td><button class='btn-close' onclick="deleteRow(this)"><i class="far fa-minus-square fa-lg"></i></button></td>
     </tr>`;
 
@@ -135,8 +139,16 @@ function deleteRow(r) {
 ////////////// EVENT LISTENERS ////////////////
 ///////////////////////////////////////////////
 
-if (ductTypeInput.value === "Round") sizeBInput.classList.toggle("hidden");
-if (ductTypeInput.value === "Rectangle") sizeBInput.classList.toggle("hidden");
+ductTypeInput.addEventListener("change", function () {
+  if (ductTypeInput.value === "Round") {
+    sizeBInput.classList.add("hidden");
+    labelSizeBInput.classList.add("hidden");
+  }
+  if (ductTypeInput.value === "Rectangle") {
+    sizeBInput.classList.remove("hidden");
+    labelSizeBInput.classList.remove("hidden");
+  }
+});
 
 calcBtn.addEventListener("click", function () {
   resultSpeed.textContent = `${calcSpeed()} m/s`;

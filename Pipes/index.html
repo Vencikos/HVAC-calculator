@@ -48,42 +48,47 @@
         <form onsubmit="event.preventDefault();">
           <!-- Type  -->
 
-          <label for="sizeA">Select air outlet type</label>
-          <select name="" id="outlet-type">
+          <label for="pipe-size">Select pipe size</label>
+          <select name="pipe-sizee" id="pipe-size">
             <option value="" disabled selected></option>
-            <option value="Ceiling">Ceiling</option>
-            <option value="Wall">Wall</option>
+            <option value="DN6">DN6</option>
+            <option value="DN8">DN8</option>
+            <option value="DN10">DN10</option>
+            <option value="DN15">DN15</option>
+            <option value="DN20">DN20</option>
+            <option value="DN25">DN25</option>
+            <option value="DN32">DN32</option>
+            <option value="DN40">DN40</option>
+            <option value="DN50">DN50</option>
+            <option value="DN65">DN65</option>
+            <option value="DN80">DN80</option>
+            <option value="DN100">DN100</option>
+            <option value="DN125">DN125</option>
+            <option value="DN150">DN150</option>
+            <option value="DN200">DN200</option>
+            <option value="DN250">DN250</option>
           </select>
 
-          <!-- Total consumption -->
+          <!-- Total cooling consumption -->
 
-          <label for="sizeA">Total consumption (kW)</label>
-          <input
-            type="number"
-            class="input-consumption"
-            onchange="calcSpeed()"
-          />
+          <label for="input-consumption-heating"
+            >Total consumption - heating (kW)</label
+          >
+          <input type="number" class="input-consumption-heating" />
 
-          <!-- Size B input -->
+          <!-- Total heating consumption -->
 
-          <label for="sizeB">Size B (mm)</label>
-          <input type="number" class="input-sizeB" onchange="calcSpeed()" />
+          <label for="input-consumption-cooling"
+            >Total consumption - cooling (kW)</label
+          >
+          <input type="number" class="input-consumption-cooling" />
 
           <!-- Volume input -->
 
-          <label for="sizeB">Air volume (m3/h)</label>
-          <input
-            type="number"
-            class="air-volume-input"
-            onchange="calcSpeed()"
-          />
+          <label for="water-volume">Water volume (m3/h)</label>
+          <input type="number" class="input-water-volume" />
 
-          <!-- Speed input -->
-
-          <label for="sizeB">Air speed (m/s)</label>
-          <input type="number" class="air-speed-input" onchange="calcSpeed()" />
-
-          <!-- Calculate button -->
+          <!-- Buttons -->
 
           <button class="btn btn-calc">Calculate</button>
           <button class="btn btn-add">Add to table</button>
@@ -95,33 +100,64 @@
       <!-- Result fields -->
 
       <div class="results-div">
-        <div class="results-speed">
-          <h4>Speed</h4>
-          <h3 class="result-speed-text">0.00 m/s</h3>
+        <div class="results-water-volume-H">
+          <h4>Water volume heating</h4>
+          <h3 class="result-water-volume-H-text">0.00 m3/h</h3>
         </div>
 
-        <div class="results-max-volume">
-          <h4>Max volume</h4>
-          <h3 class="result-max-volume-text">0.00 m3/h</h3>
+        <div class="results-water-volume-C">
+          <h4>Water volume cooling</h4>
+          <h3 class="result-water-volume-C-text">0.00 m3/h</h3>
         </div>
 
-        <div class="results-second-size">
-          <h4>Min second side</h4>
-          <h3 class="result-second-size-text">0.00 mm</h3>
+        <div class="results-max-water-volume-H">
+          <h4>Max water volume heating</h4>
+          <h3 class="result-max-water-volume-H-text">0.00 m3/h</h3>
+        </div>
+
+        <div class="results-max-water-volume-C">
+          <h4>Max water volume cooling</h4>
+          <h3 class="result-max-water-volume-C-text">0.00 m3/h</h3>
+        </div>
+
+        <div class="results-pipe-size-H">
+          <h4>Pipe size heating</h4>
+          <h3 class="result-pipe-size-H-text">0.00 mm</h3>
+        </div>
+
+        <div class="results-pipe-type-H">
+          <h4>Pipe type heating</h4>
+          <h3 class="result-pipe-type-H-text"></h3>
+        </div>
+
+        <div class="results-pipe-size-C">
+          <h4>Pipe size cooling</h4>
+          <h3 class="result-pipe-size-C-text">0.00 mm</h3>
+        </div>
+
+        <div class="results-pipe-type-C">
+          <h4>Pipe type cooling</h4>
+          <h3 class="result-pipe-type-C-text"></h3>
         </div>
       </div>
 
       <div class="results-elements">
         <table border="2" cellpadding="3" id="tab">
-          <tr class="table">
+          <tr>
             <th scope="col">Description</th>
-            <th scope="col">Size A</th>
-            <th scope="col">Size B</th>
-            <th scope="col">Air volume</th>
-            <th scope="col">Air speed</th>
-            <th scope="col">Max volume</th>
-            <th scope="col">Min second side</th>
+            <th scope="col">Water volume</th>
+            <th scope="col">Max water volume</th>
+            <th scope="col">Pipe size</th>
+            <th scope="col">Pipe type</th>
             <th scope="col">Delete</th>
+          </tr>
+          <tr class="table">
+            <th scope="col"></th>
+            <th scope="col">m3/h</th>
+            <th scope="col">m3/h</th>
+            <th scope="col">mm</th>
+            <th scope="col">DN</th>
+            <th scope="col"></th>
           </tr>
         </table>
       </div>

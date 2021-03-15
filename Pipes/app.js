@@ -2,20 +2,35 @@
 ////////////// Input fields ///////////////
 ///////////////////////////////////////////
 
-const outletTypeInput = document.querySelector("#outlet-type");
-const sizeAInput = document.querySelector(".input-sizeA");
-const sizeBInput = document.querySelector(".input-sizeB");
-const airVolumeInput = document.querySelector(".air-volume-input");
-const airSpeedInput = document.querySelector(".air-speed-input");
+const pipeSizeInput = document.querySelector("#pipe-size");
+const consumptionInputCooling = document.querySelector(
+  ".input-consumption-cooling"
+);
+const consumptionInputHeating = document.querySelector(
+  ".input-consumption-heating"
+);
+const waterVolumeInput = document.querySelector(".input-water-volume");
 
 ///////////////////////////////////////////
 ////////////// Result fields //////////////
 ///////////////////////////////////////////
 
-const resultSpeed = document.querySelector(".result-speed-text");
-const resultMaxSpeed = document.querySelector(".result-max-speed-text");
-const resultMaxVolume = document.querySelector(".result-max-volume-text");
-const resultSecondSize = document.querySelector(".result-second-size-text");
+const resultWaterVolumeH = document.querySelector(
+  ".result-water-volume-H-text"
+);
+const resultWaterVolumeC = document.querySelector(
+  ".result-water-volume-C-text"
+);
+const resultMaxWaterVolumeH = document.querySelector(
+  ".result-max-water-volume-H-text"
+);
+const resultMaxWaterVolumeC = document.querySelector(
+  ".result-max-water-volume-C-text"
+);
+const resultPipeSizeH = document.querySelector(".result-pipe-size-H-text");
+const resultPipeTypeH = document.querySelector(".result-pipe-type-H-text");
+const resultPipeSizeC = document.querySelector(".result-pipe-size-C-text");
+const resultPipeTypeC = document.querySelector(".result-pipe-type-C-text");
 
 ///////////////////////////////////////////
 //////////// Calculate button /////////////
@@ -35,68 +50,53 @@ const btnPrint = document.querySelector(".btn-print");
 ///////////////////////////////////////////
 
 const resetInput = () => {
-  outletTypeInput.value = "";
-  sizeAInput.value = "";
-  sizeBInput.value = "";
-  airVolumeInput.value = "";
-  airSpeedInput.value = "";
+  pipeSizeInput.value = "";
+  consumptionInputCooling.value = "";
+  consumptionInputHeating.value = "";
+  waterVolumeInput.value = "";
 };
 
 const resetResults = () => {
-  resultSpeed.textContent = `0.00 m/s`;
-  resultMaxSpeed.textContent = `0.00 m/s`;
-  resultMaxVolume.textContent = `0.00 m3/h`;
-  resultSecondSize.textContent = `0.00 mm`;
+  resultWaterVolume.textContent = `0.00 m3/h`;
+  resultMaxWaterVolume.textContent = `0.00 m3/h`;
+  resultPipeSize.textContent = `DN ??`;
 };
 ///////////////////////////////////////////
-////////////// CALC SPEED /////////////////
+////////// CALC WATER VOLUME //////////////
 ///////////////////////////////////////////
 
-const calcSpeed = () => {
-  let typeInput = 0.5;
-  if (outletTypeInput.value === "Wall") typeInput = 0.7;
+const calcWaterVolumeH = () => {
+  const calc = (+consumptionInputHeating.value * 0.86) / 12;
+  return calc.toFixed(2);
+};
 
-  const calc =
-    +airVolumeInput.value /
-    3600 /
-    (+sizeAInput.value / 1000) /
-    (+sizeBInput.value / 1000) /
-    typeInput;
+const calcWaterVolumeC = () => {
+  const calc = (+consumptionInputCooling.value * 0.86) / 5;
   return calc.toFixed(2);
 };
 
 ///////////////////////////////////////////////
-////////////// CALC MAX VOLUME ////////////////
+////////// CALC MAX WATER VOLUME //////////////
 ///////////////////////////////////////////////
 
-const calcMaxVolume = () => {
-  let typeInput = 0.5;
-  if (outletTypeInput.value === "Wall") typeInput = 0.7;
+// const calcMaxWaterVolume = () => {
+//   const calc =
 
-  const calc =
-    +airSpeedInput.value *
-    3600 *
-    (+sizeAInput.value / 1000) *
-    (+sizeBInput.value / 1000) *
-    typeInput;
+//   return calc;
+// };
+
+///////////////////////////////////////////////
+/////////////// CALC PIPE SIZE ////////////////
+///////////////////////////////////////////////
+
+const calcPipeSizeH = () => {
+  const calc = Math.sqrt((calcWaterVolumeH() * 4) / 3600 / 3.14) * 1000;
   return calc.toFixed(2);
 };
 
-///////////////////////////////////////////////
-/////////// CALC MAX VERTICAL SIZE ////////////
-///////////////////////////////////////////////
-
-const calcMinVertical = () => {
-  let typeInput = 0.5;
-  if (outletTypeInput.value === "Wall") typeInput = 0.7;
-
-  const calc =
-    +airVolumeInput.value /
-    3600 /
-    (+sizeAInput.value / 1000) /
-    +airSpeedInput.value /
-    typeInput;
-  return (calc * 1000).toFixed(2);
+const calcPipeSizeC = () => {
+  const calc = Math.sqrt((calcWaterVolumeC() * 4) / 3600 / 3.14) * 1000;
+  return calc.toFixed(2);
 };
 
 ///////////////////////////////////////////////
@@ -108,7 +108,7 @@ const table = document.querySelector(".table");
 const addResultsToTable = () => {
   const html = `
     <tr>
-      <th scope="row">Air vent (${outletTypeInput.value} mounted)</th>
+      <th scope="row">Pipe</th>
       <td>${sizeAInput.value}</td>
       <td>${sizeBInput.value}</td>
       <td>${airVolumeInput.value}</td>
@@ -135,11 +135,14 @@ function deleteRow(r) {
 ///////////////////////////////////////////////
 
 calcBtn.addEventListener("click", function () {
-  resultSpeed.textContent = `${calcSpeed()} m/s`;
-  resultMaxVolume.textContent = `${calcMaxVolume()} m3/h`;
-  if (airSpeedInput.value !== "") {
-    resultSecondSize.textContent = `${calcMinVertical()} mm`;
-  }
+  resultWaterVolumeH.textContent = `${calcWaterVolumeH()} m3/h`;
+  resultWaterVolumeC.textContent = `${calcWaterVolumeC()} m3/h`;
+  // resultMaxWaterVolumeH.textContent = `${} m3/h`;
+  // resultMaxWaterVolumeC.textContent = `${} m3/h`;
+  resultPipeSizeH.textContent = `${calcPipeSizeH()} mm`;
+  // resultPipeTypeH.textContent = `DN ${}`;
+  resultPipeSizeC.textContent = `${calcWaterVolumeC()} mm`;
+  // resultPipeTypeH.textContent = `DN ${}`;
 });
 
 addBtn.addEventListener("click", () => addResultsToTable());

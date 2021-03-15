@@ -194,10 +194,14 @@ input::-webkit-inner-spin-button {
   border-radius: 1rem;
 }
 
-.results-speed,
-.results-max-speed,
-.results-max-volume,
-.results-second-size {
+.results-water-volume-H,
+.results-water-volume-C,
+.results-max-water-volume-H,
+.results-max-water-volume-C,
+.results-pipe-size-H,
+.results-pipe-type-H,
+.results-pipe-size-C,
+.results-pipe-type-C {
   padding: 1rem;
 }
 

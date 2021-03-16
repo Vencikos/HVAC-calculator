@@ -46,7 +46,7 @@ const btnPrint = document.querySelector(".btn-print");
 ///////////////////////////////////////////
 
 ///////////////////////////////////////////
-////////// RESET INPUT FIELDS /////////////
+//////// RESET INPUT AND RESULT ///////////
 ///////////////////////////////////////////
 
 const resetInput = () => {
@@ -57,9 +57,14 @@ const resetInput = () => {
 };
 
 const resetResults = () => {
-  resultWaterVolume.textContent = `0.00 m3/h`;
-  resultMaxWaterVolume.textContent = `0.00 m3/h`;
-  resultPipeSize.textContent = `DN ??`;
+  resultWaterVolumeH.textContent = "0.00 m3/h";
+  resultWaterVolumeC.textContent = "0.00 m3/h";
+  resultMaxWaterVolumeH.textContent = "0.00 m3/h";
+  resultMaxWaterVolumeC.textContent = "0.00 m3/h";
+  resultPipeSizeH.textContent = "0.00 mm";
+  resultPipeTypeH.textContent = "";
+  resultPipeSizeC.textContent = "0.00 mm";
+  resultPipeTypeC.textContent = "";
 };
 ///////////////////////////////////////////
 ////////// CALC WATER VOLUME //////////////
@@ -100,6 +105,17 @@ const calcPipeSizeC = () => {
 };
 
 ///////////////////////////////////////////////
+/////////////// CALC PIPE TYPE ////////////////
+///////////////////////////////////////////////
+
+//TODO Find table with diameters of the pipes and calculate the inner diameters for the functions
+
+// const calcPipeTypeH = () => {
+//   const pipeSize = calcPipeSizeH();
+//   if (pipeSize) return "DN6";
+// };
+
+///////////////////////////////////////////////
 //////////// ADD RESULTS TO TABLE /////////////
 ///////////////////////////////////////////////
 
@@ -109,12 +125,12 @@ const addResultsToTable = () => {
   const html = `
     <tr>
       <th scope="row">Pipe</th>
-      <td>${sizeAInput.value}</td>
-      <td>${sizeBInput.value}</td>
-      <td>${airVolumeInput.value}</td>
-      <td>${calcSpeed()}</td>
-      <td>${calcMaxVolume()}</td>
-      <td>${calcMinVertical()}</td>
+      <td>${resultWaterVolumeH.value}</td>
+      <td>${resultWaterVolumeC.value}</td>
+      <td>${resultPipeSizeH.value}</td>
+      <td>${resultPipeTypeH.value}</td>
+      <td>${resultPipeSizeC.value}</td>
+      <td>${resultPipeTypeC.value}</td>
       <td><button class='btn-close' onclick="deleteRow(this)"><i class="far fa-minus-square fa-lg"></i></button></td>
     </tr>`;
 
@@ -140,9 +156,9 @@ calcBtn.addEventListener("click", function () {
   // resultMaxWaterVolumeH.textContent = `${} m3/h`;
   // resultMaxWaterVolumeC.textContent = `${} m3/h`;
   resultPipeSizeH.textContent = `${calcPipeSizeH()} mm`;
-  // resultPipeTypeH.textContent = `DN ${}`;
+  // resultPipeTypeH.textContent = `DN ${calcPipeTypeH}`;
   resultPipeSizeC.textContent = `${calcWaterVolumeC()} mm`;
-  // resultPipeTypeH.textContent = `DN ${}`;
+  // resultPipeTypeC.textContent = `DN ${calcPipeTypeC}`;
 });
 
 addBtn.addEventListener("click", () => addResultsToTable());

@@ -164,6 +164,7 @@ input::-webkit-inner-spin-button {
   margin: 2rem;
   padding: 2rem;
   border-radius: 1rem;
+  box-shadow: rgb(0, 0, 0) 0px 30px 30px -10px;
 }
 
 .input-div label {
@@ -192,6 +193,7 @@ input::-webkit-inner-spin-button {
   margin: 2rem;
   padding: 1rem;
   border-radius: 1rem;
+  box-shadow: rgb(0, 0, 0) 0px 30px 30px -10px;
 }
 
 .results-speed,

@@ -108,12 +108,36 @@ const calcPipeSizeC = () => {
 /////////////// CALC PIPE TYPE ////////////////
 ///////////////////////////////////////////////
 
-//TODO Find table with diameters of the pipes and calculate the inner diameters for the functions
-
-// const calcPipeTypeH = () => {
-//   const pipeSize = calcPipeSizeH();
-//   if (pipeSize) return "DN6";
-// };
+const calcPipeType = (pipesize) => {
+  const pipeSize = +pipesize;
+  if (pipeSize <= 9.1) return 9.1 - pipeSize < Math.abs(6.2 - pipeSize) ? 8 : 6;
+  else if (pipeSize <= 12.6)
+    return 12.6 - pipeSize < Math.abs(9.1 - pipeSize) ? 10 : 8;
+  else if (pipeSize <= 14.9)
+    return 14.9 - pipeSize < Math.abs(12.6 - pipeSize) ? 15 : 10;
+  else if (pipeSize <= 20.4)
+    return 20.4 - pipeSize < Math.abs(14.9 - pipeSize) ? 20 : 15;
+  else if (pipeSize <= 25.5)
+    return 25.5 - pipeSize < Math.abs(20.4 - pipeSize) ? 25 : 20;
+  else if (pipeSize <= 34.3)
+    return 34.3 - pipeSize < Math.abs(25.5 - pipeSize) ? 32 : 25;
+  else if (pipeSize <= 40)
+    return 40 - pipeSize < Math.abs(34.3 - pipeSize) ? 40 : 32;
+  else if (pipeSize <= 51)
+    return 51 - pipeSize < Math.abs(40 - pipeSize) ? 50 : 40;
+  else if (pipeSize <= 66.5)
+    return 66.5 - pipeSize < Math.abs(51 - pipeSize) ? 65 : 50;
+  else if (pipeSize <= 79.5)
+    return 79.5 - pipeSize < Math.abs(66.5 - pipeSize) ? 80 : 65;
+  else if (pipeSize <= 92.3)
+    return 92.3 - pipeSize < Math.abs(79.5 - pipeSize) ? 90 : 80;
+  else if (pipeSize <= 104)
+    return 104 - pipeSize < Math.abs(92.3 - pipeSize) ? 100 : 90;
+  else if (pipeSize <= 129)
+    return 129 - pipeSize < Math.abs(104 - pipeSize) ? 125 : 100;
+  else if (pipeSize <= 154)
+    return 154 - pipeSize < Math.abs(129 - pipeSize) ? 150 : 125;
+};
 
 ///////////////////////////////////////////////
 //////////// ADD RESULTS TO TABLE /////////////
@@ -124,13 +148,15 @@ const table = document.querySelector(".table");
 const addResultsToTable = () => {
   const html = `
     <tr>
-      <th scope="row">Pipe</th>
-      <td>${resultWaterVolumeH.value}</td>
-      <td>${resultWaterVolumeC.value}</td>
-      <td>${resultPipeSizeH.value}</td>
-      <td>${resultPipeTypeH.value}</td>
-      <td>${resultPipeSizeC.value}</td>
-      <td>${resultPipeTypeC.value}</td>
+      <th scope="row">Black seamless pipe</th>
+      <td>${consumptionInputHeating.value}</td>
+      <td>${consumptionInputCooling.value}</td>
+      <td>${resultWaterVolumeH.textContent}</td>
+      <td>${resultWaterVolumeC.textContent}</td>
+      <td>${resultPipeSizeH.textContent}</td>
+      <td>${resultPipeTypeH.textContent}</td>
+      <td>${resultPipeSizeC.textContent}</td>
+      <td>${resultPipeTypeC.textContent}</td>
       <td><button class='btn-close' onclick="deleteRow(this)"><i class="far fa-minus-square fa-lg"></i></button></td>
     </tr>`;
 
@@ -156,9 +182,9 @@ calcBtn.addEventListener("click", function () {
   // resultMaxWaterVolumeH.textContent = `${} m3/h`;
   // resultMaxWaterVolumeC.textContent = `${} m3/h`;
   resultPipeSizeH.textContent = `${calcPipeSizeH()} mm`;
-  // resultPipeTypeH.textContent = `DN ${calcPipeTypeH}`;
-  resultPipeSizeC.textContent = `${calcWaterVolumeC()} mm`;
-  // resultPipeTypeC.textContent = `DN ${calcPipeTypeC}`;
+  resultPipeTypeH.textContent = `DN ${calcPipeType(calcPipeSizeH())}`;
+  resultPipeSizeC.textContent = `${calcPipeSizeC()} mm`;
+  resultPipeTypeC.textContent = `DN ${calcPipeType(calcPipeSizeC())}`;
 });
 
 addBtn.addEventListener("click", () => addResultsToTable());

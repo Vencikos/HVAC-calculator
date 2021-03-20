@@ -210,3 +210,39 @@ input::-webkit-inner-spin-button {
 .results-elements {
   margin: 2rem;
 }
+
+@media screen and (max-width: 1000px) {
+  li {
+    margin: 0;
+  }
+
+  .btn {
+    font-size: 0.8rem;
+  }
+
+  .btn-add {
+    display: none;
+  }
+
+  .btn-print {
+    display: none;
+  }
+
+  .results-elements {
+    display: none;
+  }
+
+  .input-div {
+    font-size: 0.87rem;
+    margin: 10vw 2.5vw 10vw 5vw;
+    padding: 1rem;
+    width: 40vw;
+  }
+
+  .results-div {
+    font-size: 0.8rem;
+    margin: 10vw 5vw 10vw 2.5vw;
+    padding: 1rem;
+    width: 40vw;
+  }
+} ;

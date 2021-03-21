@@ -17,6 +17,7 @@ const resultSpeed = document.querySelector(".result-speed-text");
 const resultMaxSpeed = document.querySelector(".result-max-speed-text");
 const resultMaxVolume = document.querySelector(".result-max-volume-text");
 const resultSecondSize = document.querySelector(".result-second-size-text");
+const resultSecondSizeDiv = document.querySelector(".results-second-size");
 
 ///////////////////////////////////////////
 //////////// Calculate button /////////////
@@ -100,7 +101,9 @@ const calcMinVertical = () => {
     3600 /
     (+sizeAInput.value / 1000) /
     +airSpeedInput.value;
-  return ductTypeInput.value === "Round" ? "0.00" : (calc * 1000).toFixed(2);
+  return ductTypeInput.value === "Round"
+    ? "No second side"
+    : (calc * 1000).toFixed(2);
 };
 
 ///////////////////////////////////////////////
@@ -143,10 +146,12 @@ ductTypeInput.addEventListener("change", function () {
   if (ductTypeInput.value === "Round") {
     sizeBInput.classList.add("hidden");
     labelSizeBInput.classList.add("hidden");
+    resultSecondSizeDiv.classList.add("hidden");
   }
   if (ductTypeInput.value === "Rectangle") {
     sizeBInput.classList.remove("hidden");
     labelSizeBInput.classList.remove("hidden");
+    resultSecondSizeDiv.classList.remove("hidden");
   }
 });
 
